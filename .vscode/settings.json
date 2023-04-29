@@ -1,0 +1,29 @@
+{
+  "stylelint.validate": ["css", "scss", "vue"],
+  "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.fixAll.stylelint": true,
+      "source.fixAll.eslint": true
+  },
+  "files.associations": {
+      ".env.*": "dotenv"
+  },
+  "files.eol": "\n",
+  "eslint.probe": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "html",
+      "vue",
+      "markdown",
+      "ts",
+      "tsx"
+  ],
+  "eslint.validate": [
+      "javascript",
+      "typescript",
+      "tsx"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
