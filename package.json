@@ -1,0 +1,30 @@
+{
+  "name": "niconite",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "build:analyze": "ANALYZE=true npm run build"
+  },
+  "dependencies": {
+    "next": "^12.1.6",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "next-compose-plugins": "^2.2.1",
+    "sass": "^1.32.5",
+    "axios": "^0.21.1",
+    "@next/bundle-analyzer": "^10.0.5",
+    "react-use": "^15.3.8",
+    "mobx": "^6.0.4",
+    "mobx-react": "^7.0.5",
+    "mobx-state-tree": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.13",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "typescript": "^4.1.3"
+  }
+}

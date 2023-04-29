@@ -1,0 +1,40 @@
+{
+  "name": "niconite",
+  "plugins": [
+    {
+      "name": "SASS/SCSS",
+      "description": "Sass is a stylesheet language that’s compiled to CSS. It allows you to use variables, nested rules, mixins, functions, and more, all with a fully CSS-compatible syntax.",
+      "url": "https://sass-lang.com/documentation"
+    },
+    {
+      "name": "Axios",
+      "description": "Promise based HTTP client for the browser and node.js.",
+      "url": "https://github.com/axios/axios"
+    },
+    {
+      "name": "Environment Variables",
+      "description": "Use environment variables in your next.js project for server side, client or both.",
+      "url": "https://github.com/vercel/next.js/tree/canary/examples/environment-variables"
+    },
+    {
+      "name": "Bundle Analyzer",
+      "description": "Use webpack-bundle-analyzer in your Next.js project. Visualize size of webpack output files with an interactive zoomable treemap.",
+      "url": "https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer"
+    },
+    {
+      "name": "react-use",
+      "description": "A Collection of useful React hooks.",
+      "url": "https://github.com/streamich/react-use"
+    },
+    {
+      "name": "MobX",
+      "description": "MobX is unopinionated and allows you to manage your application state outside of any UI framework.",
+      "url": "https://mobx.js.org/README.html"
+    },
+    {
+      "name": "MobX State Tree",
+      "description": "MobX-State-Tree (also known as MST) is a state container system built on MobX, a functional reactive state library.",
+      "url": "https://mobx-state-tree.js.org/intro/welcome"
+    }
+  ]
+}
