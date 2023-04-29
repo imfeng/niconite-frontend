@@ -1,0 +1,25 @@
+
+.layout {
+  background: url(../../assets/bg.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  min-height: 100vh;
+  width: 100%;
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  .layout {
+    box-shadow: 0px 0px 20px 1px rgb(47 47 47 / 70%);
+    border-radius: 5px;
+    max-width: 540px;
+    height: 968px;
+    min-height: initial;
+    margin: 0 auto;
+  }
+}
