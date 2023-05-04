@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
-import computerAns1Img from "../src/assets/ans1.png";
+import computerAns1Img from "../src/assets/com-ans1.png";
 import ans1DescImg from "../src/assets/ans1-desc.png";
 import IconEsc from "../src/assets/icon-esc.svg";
 import IconDown from "../src/assets/icon-down.svg";
+import IconRefresh from "../src/assets/icon-refresh.svg";
 
+const correctAnswers = [1, 3, 4, 5, 1, 4, 1, 3];
 const AnswerPage: React.FC = () => {
+  const state = useState({
+    responseAns: new Array(8).fill(0),
+  });
+
   return (
     <>
       <div className="page page-answer">
@@ -48,8 +54,10 @@ const AnswerPage: React.FC = () => {
       </div>
       <footer className="footer">
         <div className="ctrl-box">
-          <button>Get Your Resault</button>
-          <button>R</button>
+          <button className="btn-result">Get Your Resault</button>
+          <button className="btn-refresh">
+            <img src={IconRefresh.src} alt="" />
+          </button>
         </div>
       </footer>
     </>

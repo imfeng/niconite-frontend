@@ -1,6 +1,6 @@
-$mainColor: #FFD978;
-$lightColor: #FFBE5C;
-$bgColor: #180C00;
+@import "./spec.scss";
+@import "./progress";
+@import "./question";
 
 html,
 body {
@@ -21,45 +21,74 @@ body {
   overflow: hidden;
 }
 
+.main {
+  display: "flex";
+  flex-direction: "column";
+  min-height: "100vh";
+}
+
 .page {
-  position: relative;
+  width: 100%;
   overflow: hidden;
-  padding: 1rem;
+  // padding: 1rem;
   min-height: 100vh;
 }
 
 .page-home {
-  width: 100%;
-  position: relative;
   height: 100vh;
+  
+  .header {
+    .btn-esc {
+      .icon-esc path, .icon-esc rect {
+        stroke: $subColor !important;
+      }
+      .icon-esc {
+      }
+      img {
+        & path {
+        }
+      }
+      color: $subColor;
+    }
+  }
 
   .computer {
-    width: 100%;
+    transition: opacity 0.2s fast-out;
+    position: relative;
     position: absolute;
-    top: 60px;
+    width: 100%;
+    top: 100px; // TODO: js
+    display: flex;
+    justify-content: center;
     img {
-      width: 100%;
+      width: 90%;
+      margin: 0 auto;
     }
 
   }
   .bottom-ctrl {
     text-align: center;
-    width: 100%;
+    margin: 0 auto;;
     position: absolute;
-    font-weight: 500;
-    font-size: 1.5rem;
-    color: #FF733A;
     float: right;
-    bottom: 20%;
+    bottom: 30%;
+    left: 0;
+    right: 0;
     cursor: pointer;
+
+    .btn-start {
+      border: none;
+      color: #FF733A;
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
   }
+
 }
 
 
 .page-question {
-  position: relative;
   height: 100vh;
-  width: 100%;
 
   background: url("../assets/bg-q.png");
   background-position: top center;
@@ -68,6 +97,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .header {
+
+  }
 
 
   .content {
@@ -99,6 +132,19 @@ body {
     // position: absolute;
     margin: 5rem auto;
     bottom: 10vh;
+  }
+
+  .ctrl-fixed-box {
+    width: 90%;
+    position: fixed;
+    bottom: 0;
+    padding: 1rem 1rem 3rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    
+    button {
+      padding: .6rem .8rem;
+    }
   }
 }
 
@@ -143,10 +189,10 @@ body {
     text-align: center;
     position: absolute;
     left: 0;
-    top: 33vw;
+    top: 170px; // TODO: js
 
     img {
-      height: 400px;
+      width: 90%;
     }
 
   }
@@ -154,7 +200,7 @@ body {
   .desc {
     position: relative;
     z-index: 5;
-    margin-top: 330px;
+    margin-top: 370px;
     width: 100%;
     text-align: center;
     color: $mainColor;
@@ -182,7 +228,11 @@ body {
     }
 
     .detail {
-      margin: 1rem auto;
+      h3, p {
+        margin: .5rem 0;
+      }
+      margin: 2rem auto;
+      padding: 0 1.2rem;
     }
 
     .detail-end {
@@ -197,15 +247,22 @@ body {
 // components
 
 .header {
+  z-index: 9;
   width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
 
   .btn-esc {
     color: $mainColor;
+    border: none;
+
+    svg {
+      margin-right: .5rem;
+    }
     img {
       margin-right: .5rem;
       width: 1.5rem;
@@ -214,9 +271,6 @@ body {
     span {
       font-size: 1.3rem;
       font-weight: 500;
-    }
-    & > * {
-      vertical-align: middle;
     }
   }
 
@@ -228,8 +282,17 @@ body {
 }
 
 .footer {
-  padding: 1rem;
+  padding: 2rem 1rem;
   background-color: $bgColor;
+
+
+  .ctrl-box {
+    text-align: center;
+  }
+
+  button {
+    font-size: 1.3rem;
+  }
 }
 
 .logo-main {
@@ -237,10 +300,6 @@ body {
 }
 
 .btn-niconite {
-  background: transparent;
-  border: 3px solid $mainColor;
-  border-radius: 20px;
-  padding: .3rem .7rem;
   color: $lightColor;
   font-size: 1.5rem;
 }
@@ -256,8 +315,30 @@ button {
   border: none;
   cursor: pointer;
   vertical-align: middle;
+  border: 3px solid $mainColor;
+  background: transparent;
+  border-radius: 15px;
+  padding: .3rem .7rem;
+  color: $mainColor;
+  
+
+  &:not(:last-of-type) {
+    margin-right: 1rem;
+  }
+
+  & > * {
+    vertical-align: middle;
+  }
+
+  &.no-border {
+    border: none;
+  }
 }
 
 img {
   max-width: 100%;
+}
+
+.btn-result {
+  background: #A46428;
 }
