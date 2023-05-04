@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MobileLayout } from "@components/layout/mobile-layout";
 
 import computerAns1Img from "../src/assets/com-ans1.png";
 import ans1DescImg from "../src/assets/ans1-desc.png";
@@ -13,7 +14,7 @@ const AnswerPage: React.FC = () => {
   });
 
   return (
-    <>
+    <MobileLayout>
       <div className="page page-answer">
         <header className="header">
           <button className="btn-esc">
@@ -60,7 +61,7 @@ const AnswerPage: React.FC = () => {
           </button>
         </div>
       </footer>
-    </>
+    </MobileLayout>
   );
 };
 export default AnswerPage;
