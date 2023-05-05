@@ -3,7 +3,7 @@
 .ques-form {
   width: 80%;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 1rem;
   
   .options {
     display: flex;
@@ -12,7 +12,7 @@
 
   .ques-audio {
     display: flex;
-    margin-top: 1rem;
+    margin-top: .8rem;
 
     &.active {
       .box {
@@ -40,7 +40,8 @@
       border-radius: 10px;
 
       img {
-        height: 120px;
+        height: 100px;
+        max-height: 13vh;
       }
     }
   }
@@ -93,6 +94,26 @@
       &.cat {
         img {
           width: 100px;
+        }
+      }
+
+      @media screen and (max-height:680px) { 
+        img {
+          // width: 100%;
+          width: 120px;
+          height: 100%;
+        }
+  
+        &.full {
+          img {
+            width: 243px;
+          }
+        }
+  
+        &.cat {
+          img {
+            width: 100px;
+          }
         }
       }
     }

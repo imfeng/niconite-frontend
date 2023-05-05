@@ -35,10 +35,10 @@ const AnswerPage: React.FC = () => {
             <img src={ans1DescImg.src} alt="" />
 
             <div className="icon-down-item left">
-              <img src={IconDown.src} alt="" />
+              <IconDown></IconDown>
             </div>
             <div className="icon-down-item right">
-              <img src={IconDown.src} alt="" />
+              <IconDown></IconDown>
             </div>
           </div>
           <div className="detail">
