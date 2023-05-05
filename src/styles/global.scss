@@ -124,7 +124,9 @@ body {
 
   }
 
-
+  .ques-item {
+    cursor: pointer;
+  }
   .content {
     width: 100%;
     display: flex;
@@ -183,7 +185,7 @@ body {
   .ctrl-fixed-box {
     width: 100%;
     position: absolute;
-    bottom: 2.4rem;
+    bottom: 4.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
     // padding: 1rem 1.5rem 3.5rem 1.5rem;
@@ -196,15 +198,29 @@ body {
 
     .btn-back {
       // position: absolute;
-      bottom: -2.5rem;
+      bottom: -4.5rem;
       left: 1rem;
     }
 
     .btn-next {
       // position: absolute;
-      bottom: -2.5rem;
+      bottom: -4.5rem;
       right: 1rem;
+    }
 
+  }
+  @media screen and (max-height:720px) { 
+    .ctrl-fixed-box {
+      bottom: 2.5rem;
+      .btn-back {
+        bottom: -2.5rem;
+        left: 1rem;
+      }
+  
+      .btn-next {
+        bottom: -2.5rem;
+        right: 1rem;
+      }
     }
   }
 }

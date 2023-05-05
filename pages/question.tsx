@@ -471,6 +471,7 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
   ],
 ];
 const resultPageNumber = [0, 1, 2, 3];
+const CorrectAnswer = ["3", "2", "1", "2", "1", "1", "1", "2"];
 const QuestionPage: React.FC = () => {
   const router = useRouter();
   const [isDoing, setIsDoing] = useState(false);
@@ -501,7 +502,7 @@ const QuestionPage: React.FC = () => {
     setQuestion(newIndex);
   };
 
-  const submit = async (offset: number) => {
+  const submit = () => {
     setIsSubmiting(true);
   };
 
@@ -657,7 +658,7 @@ const QuestionPage: React.FC = () => {
                 BACK
               </button>
               {currentQuestion === 7 ? (
-                <button onClick={() => goQuestion(1)} className="btn-next">
+                <button onClick={() => submit()} className="btn-next">
                   SUBMIT
                 </button>
               ) : (
