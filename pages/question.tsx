@@ -25,7 +25,8 @@ import Ans6q3Img from "../src/assets/ans6-q3.png";
 import Ans6q4Img from "../src/assets/ans6-q4.png";
 import Ans6q5Img from "../src/assets/ans6-q5.png";
 import { useRouter } from "next/router";
-
+import LeavePopup from "../src/components/LeavePopup";
+import QuestionProgress from "../src/components/QuestionProgress";
 const questions = [
   <>
     <p>聽聽以下幾種聲音，</p>
@@ -50,7 +51,7 @@ type QuesItemProps = {
   onClick?: (idx: number) => void;
 };
 
-const defaultAns: (number | null)[] = new Array(8).fill(null);
+const defaultAns: (string | null)[] = new Array(8).fill("");
 
 const options: Array<Array<React.FC<QuesItemProps>>> = [
   [
@@ -474,10 +475,13 @@ const QuestionPage: React.FC = () => {
   const router = useRouter();
   const [isDoing, setIsDoing] = useState(false);
   const [currentQuestion, setQuestion] = useState(0);
-  const [ansList, setAnsList] = useState<(number | null)[]>(defaultAns);
+  const [ansList, setAnsList] = useState<(string | null)[]>(defaultAns);
   const [activeQues, setActiveQues] = useState<number | null>(null);
-  const currentAnswer = useMemo(() => {
-    return ansList[currentQuestion];
+  const [isLeaving, setIsLeaving] = useState(false);
+  const [isSubmiting, setIsSubmiting] = useState(false);
+
+  const currentAnswer = useMemo<string>(() => {
+    return ansList[currentQuestion] || "";
   }, [ansList, currentQuestion]);
 
   const goQuestion = async (offset: number) => {
@@ -497,11 +501,38 @@ const QuestionPage: React.FC = () => {
     setQuestion(newIndex);
   };
 
-  const onClickAns = (idx: number) => {
-    const currentList = [...ansList];
-    currentList[currentQuestion] = idx;
-    setAnsList(currentList);
+  const submit = async (offset: number) => {
+    setIsSubmiting(true);
   };
+
+  const onClickAns = useCallback(
+    (idx: number) => {
+      const currentList = [...ansList];
+
+      if (currentQuestion === 1) {
+        const ans = (currentList[currentQuestion] || "").split(",");
+        console.log({
+          ans,
+          o: ansList[currentQuestion],
+          idx,
+          currentQuestion,
+          currentList,
+        });
+        if (ans.includes(idx.toString())) {
+          ans.splice(ans.indexOf(idx.toString()), 1);
+        } else {
+          ans.push(idx.toString());
+        }
+        console.log({ ans });
+        currentList[currentQuestion] = ans.filter((v) => !!v).join(",");
+        console.log(currentList);
+      } else {
+        currentList[currentQuestion] = idx.toString();
+      }
+      setAnsList(currentList);
+    },
+    [currentQuestion, ansList, , setAnsList]
+  );
 
   function getOptions() {
     const opts = options[currentQuestion];
@@ -517,19 +548,19 @@ const QuestionPage: React.FC = () => {
             <Item1
               key={`a2p-${idx}`}
               idx={idx}
-              isActive={idx === currentAnswer}
+              isActive={currentAnswer?.indexOf(idx.toString()) >= 0}
               onClick={onClickAns}
             ></Item1>
             <Item2
-              key={`a2p-${idx}`}
+              key={`a2p-${idx + 1}`}
               idx={idx + 1}
-              isActive={idx + 1 === currentAnswer}
+              isActive={currentAnswer?.indexOf((idx + 1).toString()) >= 0}
               onClick={onClickAns}
             ></Item2>
             <Item3
-              key={`a2p-${idx}`}
+              key={`a2p-${idx + 2}`}
               idx={idx + 2}
-              isActive={idx + 2 === currentAnswer}
+              isActive={currentAnswer?.indexOf((idx + 2).toString()) >= 0}
               onClick={onClickAns}
             ></Item3>
           </div>
@@ -545,13 +576,15 @@ const QuestionPage: React.FC = () => {
         result.push(
           <div className="ques-group">
             <Item1
+              key={`a6p-${idx}`}
               idx={idx}
-              isActive={idx === currentAnswer}
+              isActive={idx.toString() === currentAnswer}
               onClick={onClickAns}
             ></Item1>
             <Item2
+              key={`a6p-${idx + 1}`}
               idx={idx + 1}
-              isActive={idx + 1 === currentAnswer}
+              isActive={(idx + 1).toString() === currentAnswer}
               onClick={onClickAns}
             ></Item2>
           </div>
@@ -561,8 +594,9 @@ const QuestionPage: React.FC = () => {
       result.push(
         <div className="ques-group">
           <LastItem
+            key={`a6p-5`}
             idx={5}
-            isActive={5 === currentAnswer}
+            isActive={"5" === currentAnswer}
             onClick={onClickAns}
           ></LastItem>
         </div>
@@ -574,8 +608,9 @@ const QuestionPage: React.FC = () => {
         const Item = opts[index];
         result.push(
           <Item
+            key={`a${currentQuestion}p-${index}`}
             idx={index}
-            isActive={index === currentAnswer}
+            isActive={index.toString() === currentAnswer}
             onClick={onClickAns}
           ></Item>
         );
@@ -587,16 +622,16 @@ const QuestionPage: React.FC = () => {
     <MobileLayout>
       <div className="page page-question">
         <header className="header">
-          <button className="btn-esc">
+          <button onClick={() => setIsLeaving(true)} className="btn-esc">
             <IconEsc className="icon-esc"></IconEsc>
             <span>ESC</span>
           </button>
 
-          <div className="logo">
+          <div onClick={() => router.push("/")} className="logo">
             <img src={LogoImg.src} alt="" />
           </div>
         </header>
-        {isDoing ? (
+        {isDoing && !isSubmiting ? (
           <>
             <div className="content">
               <div className="page-number">
@@ -607,6 +642,8 @@ const QuestionPage: React.FC = () => {
               </div>
               <div className="ques-form">
                 <div className="options">{getOptions()}</div>
+                {currentQuestion === 0 && <p className="tips">*請開啟音量*</p>}
+                {currentQuestion === 1 && <p className="tips">*複選題*</p>}
               </div>
             </div>
             <div className="ctrl-fixed-box">
@@ -619,23 +656,39 @@ const QuestionPage: React.FC = () => {
               >
                 BACK
               </button>
-              <button onClick={() => goQuestion(1)} className="btn-next">
-                NEXT
-              </button>
+              {currentQuestion === 7 ? (
+                <button onClick={() => goQuestion(1)} className="btn-next">
+                  SUBMIT
+                </button>
+              ) : (
+                <button onClick={() => goQuestion(1)} className="btn-next">
+                  NEXT
+                </button>
+              )}
             </div>
           </>
         ) : (
           <>
-            <div className="content">
+            <div
+              style={{
+                justifyContent: "center",
+                marginTop: "2rem",
+              }}
+              className="content"
+            >
               <div className="intro">
-                <div className="desc">
-                  <p>AI強勢來臨</p>
-                  <p>在這轉變世代你會成為什麼角色呢？</p>
-                  <p>是不幸被取代的淘太品，</p>
-                  <p>還是成功存活的人類！</p>
-                  <p>來測驗看看吧 </p>
-                  <p>;”P </p>
-                </div>
+                {isSubmiting ? (
+                  <></>
+                ) : (
+                  <div className="desc">
+                    <p>AI強勢來臨</p>
+                    <p>在這轉變世代你會成為什麼角色呢？</p>
+                    <p>是不幸被取代的淘太品，</p>
+                    <p>還是成功存活的人類！</p>
+                    <p>來測驗看看吧 </p>
+                    <p>;”P </p>
+                  </div>
+                )}
                 <div className="logo-main">
                   <img src={LogoMainImg.src} alt="" />
                 </div>
@@ -644,14 +697,21 @@ const QuestionPage: React.FC = () => {
                   <p>致力於創造讓人上癮的娛樂活動。</p>
                 </div>
               </div>
-              <div className="ctrl-box">
-                <button
-                  onClick={() => setIsDoing(true)}
-                  className="btn-niconite"
-                >
-                  我不是機器人 :)
-                </button>
-              </div>
+              {isSubmiting ? (
+                <QuestionProgress
+                  isShow={isSubmiting}
+                  onCompleted={() => goQuestion(1)}
+                ></QuestionProgress>
+              ) : (
+                <div className="ctrl-box">
+                  <button
+                    onClick={() => setIsDoing(true)}
+                    className="btn-niconite"
+                  >
+                    我不是機器人 :)
+                  </button>
+                </div>
+              )}
             </div>
           </>
         )}
@@ -660,6 +720,14 @@ const QuestionPage: React.FC = () => {
           <button className="btn-niconite">我不是機器人 :)</button>
         </div> */}
       </div>
+      {isLeaving ? (
+        <LeavePopup
+          onConfirm={() => setIsLeaving(false)}
+          isShow={isLeaving}
+        ></LeavePopup>
+      ) : (
+        <></>
+      )}
     </MobileLayout>
   );
 };

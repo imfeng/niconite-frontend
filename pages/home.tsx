@@ -4,9 +4,12 @@ import computerLogo from "../src/assets/computer.png";
 import IconEsc from "../src/assets/icon-esc.svg";
 import { useRouter } from "next/router";
 import Progress from "../src/components/progress";
+import LeavePopup from "../src/components/LeavePopup";
+
 const HomeMain: React.FC = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
   const doLoading = async () => {
     setIsLoading(true);
     // await router.push("./question");
@@ -17,7 +20,7 @@ const HomeMain: React.FC = () => {
   return (
     <div className="page page-home">
       <header className="header">
-        <button className="btn-esc">
+        <button onClick={() => setIsLeaving(true)} className="btn-esc">
           <IconEsc className="icon-esc"></IconEsc>
           <span>ESC</span>
         </button>
@@ -41,6 +44,14 @@ const HomeMain: React.FC = () => {
             PRESS TO START
           </button>
         </div>
+      )}
+      {isLeaving ? (
+        <LeavePopup
+          onConfirm={() => setIsLeaving(false)}
+          isShow={isLeaving}
+        ></LeavePopup>
+      ) : (
+        <></>
       )}
     </div>
   );
