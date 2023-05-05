@@ -34,7 +34,7 @@ export const Progress: React.FC<ProgressProps> = ({ children, ...props }) => {
         }
         return val + 1;
       });
-    }, 50) as unknown as number;
+    }, 30) as unknown as number;
   };
 
   useEffect(() => {

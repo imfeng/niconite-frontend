@@ -82,7 +82,8 @@ const AnswerPage: React.FC = () => {
     <MobileLayout>
       <div
         style={{
-          backgroundImage: `url(${BgCatImg.src})`,
+          backgroundImage:
+            currentAns === 4 ? `url(${BgCatImg.src})` : "transparent",
         }}
         className="page page-answer"
       >

@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo, useState } from "react";
+/* eslint-disable @typescript-eslint/no-floating-promises */
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { MobileLayout } from "@components/layout/mobile-layout";
 
 import computerLogo from "../src/assets/computer.png";
@@ -27,6 +28,29 @@ import Ans6q5Img from "../src/assets/ans6-q5.png";
 import { useRouter } from "next/router";
 import LeavePopup from "../src/components/LeavePopup";
 import QuestionProgress from "../src/components/QuestionProgress";
+// import Audio1Mp3 from "../src/assets/audio1.mp3";
+// import Audio2Mp3 from "../src/assets/audio2.mp3";
+
+const useAudio = (url: any): [boolean, () => void] => {
+  const [audio] = useState(new Audio(url));
+  const [playing, setPlaying] = useState(false);
+
+  const toggle = () => setPlaying(!playing);
+
+  useEffect(() => {
+    playing ? audio.play() : audio.pause();
+  }, [playing]);
+
+  useEffect(() => {
+    audio.addEventListener("ended", () => setPlaying(false));
+    return () => {
+      audio.removeEventListener("ended", () => setPlaying(false));
+    };
+  }, []);
+
+  return [playing, toggle];
+};
+
 const questions = [
   <>
     <p>聽聽以下幾種聲音，</p>
@@ -76,23 +100,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
           key="a1-2"
-          className={"ques-item ques-audio " + (props.isActive ? "active" : "")}
-        >
-          <div className="point">
-            <IconAudio></IconAudio>
-          </div>
-          <div className="box">
-            <img src={AudioImg.src} alt="" />
-          </div>
-        </div>
-      );
-    },
-
-    ({ ...props }) => {
-      return (
-        <div
-          onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a1-3"
           className={"ques-item ques-audio " + (props.isActive ? "active" : "")}
         >
           <div className="point">
@@ -619,6 +626,15 @@ const QuestionPage: React.FC = () => {
       return <>{result}</>;
     }
   }
+
+  // const [audio1Playing, audio1Play] = useAudio(Audio1Mp3.src);
+  // const [audio2Playing, audio2Play] = useAudio(Audio2Mp3.src);
+  const playAudio = () => {
+    if (!audio1Playing) {
+      audio1Play();
+    }
+  };
+
   return (
     <MobileLayout>
       <div className="page page-question">
@@ -674,6 +690,7 @@ const QuestionPage: React.FC = () => {
               style={{
                 justifyContent: "center",
                 marginTop: "2rem",
+                display: "initial",
               }}
               className="content"
             >
