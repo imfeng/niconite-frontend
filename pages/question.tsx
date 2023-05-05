@@ -472,7 +472,7 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
 
 const QuestionPage: React.FC = () => {
   const router = useRouter();
-
+  const [isDoing, setIsDoing] = useState(false);
   const [currentQuestion, setQuestion] = useState(0);
   const [ansList, setAnsList] = useState<(number | null)[]>(defaultAns);
   const [activeQues, setActiveQues] = useState<number | null>(null);
@@ -591,26 +591,65 @@ const QuestionPage: React.FC = () => {
             <img src={LogoImg.src} alt="" />
           </div>
         </header>
-
-        <div className="content">
-          <div className="page-number">
-            <p>{(currentQuestion + 1).toString().padStart(2, "0")}/08</p>
-          </div>
-          <div className="ques-text">
-            <p>{questions[currentQuestion]}</p>
-          </div>
-          <div className="ques-form">
-            <div className="options">{getOptions()}</div>
-          </div>
-        </div>
-        <div className="ctrl-fixed-box">
-          <button onClick={() => goQuestion(-1)} className="btn-back">
-            BACK
-          </button>
-          <button onClick={() => goQuestion(1)} className="btn-next">
-            NEXT
-          </button>
-        </div>
+        {isDoing ? (
+          <>
+            <div className="content">
+              <div className="page-number">
+                <p>{(currentQuestion + 1).toString().padStart(2, "0")}/08</p>
+              </div>
+              <div className="ques-text">
+                <p>{questions[currentQuestion]}</p>
+              </div>
+              <div className="ques-form">
+                <div className="options">{getOptions()}</div>
+              </div>
+            </div>
+            <div className="ctrl-fixed-box">
+              <button
+                style={{
+                  visibility: currentQuestion === 0 ? "hidden" : "initial",
+                }}
+                onClick={() => goQuestion(-1)}
+                className="btn-back"
+              >
+                BACK
+              </button>
+              <button onClick={() => goQuestion(1)} className="btn-next">
+                NEXT
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="content">
+              <div className="intro">
+                <div className="desc">
+                  <p>AI強勢來臨</p>
+                  <p>在這轉變世代你會成為什麼角色呢？</p>
+                  <p>是不幸被取代的淘太品，</p>
+                  <p>還是成功存活的人類！</p>
+                  <p>來測驗看看吧 </p>
+                  <p>;”P </p>
+                </div>
+                <div className="logo-main">
+                  <img src={LogoMainImg.src} alt="" />
+                </div>
+                <div className="slogan">
+                  <p>「Niconite尼可柰」體驗創作團隊，</p>
+                  <p>致力於創造讓人上癮的娛樂活動。</p>
+                </div>
+              </div>
+              <div className="ctrl-box">
+                <button
+                  onClick={() => setIsDoing(true)}
+                  className="btn-niconite"
+                >
+                  我不是機器人 :)
+                </button>
+              </div>
+            </div>
+          </>
+        )}
 
         {/* <div className="ctrl-box">
           <button className="btn-niconite">我不是機器人 :)</button>
