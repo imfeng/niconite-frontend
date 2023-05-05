@@ -28,10 +28,10 @@ body {
   overflow: hidden;
 
   width: 100%;
-  max-width: 480px;
-  max-height: 920px;
   
   @media screen and (min-width:768px) { 
+    max-width: 480px;
+    max-height: 920px;
   }
 }
 
@@ -72,7 +72,7 @@ body {
   .computer-box {
     position: absolute;
     width: 100%;
-    top: 15.5%;
+    top: 14%;
   }
 
   .computer {
@@ -211,6 +211,14 @@ body {
 
 .page-answer {
   background-color: rgba(24, 12, 0, 0.405);
+  overflow-y: hidden;
+  max-height: initial;
+  height: initial;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: local;
+  // margin-bottom: 5rem;
   
 
   .header {
@@ -219,6 +227,7 @@ body {
     position: relative;
     justify-content: center;
     align-items: center;
+    margin-top: 1.5rem;
 
 
     .btn-esc {
@@ -237,39 +246,48 @@ body {
     z-index: 5;
     color: $mainColor;
     font-weight: bold;
-    font-size: 2rem;
     text-align: center;
+    margin-top: .5rem;
     h1 {
+      font-size: 3.1rem;
       margin: auto;
     }
   }
 
+  .computer-box {
+    position: absolute;
+    width: 100%;
+    top: 115px
+  }
   .computer {
     z-index: 2;
-    width: 100%;
-    text-align: center;
+    top: 0;
+    transition: opacity 0.2s fast-out;
+    position: relative;
     position: absolute;
-    left: 0;
-    top: 170px; // TODO: js
-
+    width: 100%;
+    display: flex;
+    justify-content: center;
     img {
-      width: 90%;
+      width: 79%;
+      margin: 0 auto;
     }
-
   }
 
   .desc {
     position: relative;
     z-index: 5;
-    margin-top: 370px;
+    margin-top: 330px;
     width: 100%;
     text-align: center;
     color: $mainColor;
+    margin-bottom: 1rem;
+    height: 100%;
 
     .desc-img-box {
       position: relative;
       img {
-        width: 93%;
+        width: 86%;
       }
 
       .icon-down-item {
@@ -280,20 +298,25 @@ body {
         }
 
         &.left {
-          left: 0rem;
+          left: .5rem;
         }
         &.right {
-          right: 0rem;
+          right: .5rem;
         }
       }
     }
 
     .detail {
       h3, p {
-        margin: .5rem 0;
+        margin: .2rem 0;
       }
-      margin: 2rem auto;
-      padding: 0 1.2rem;
+      margin: 0 auto;
+
+      p {
+        text-align: left;
+        padding: .3rem 2rem;
+        font-size: .9rem;
+      }
     }
 
     .detail-end {
@@ -354,6 +377,13 @@ body {
 
   button {
     font-size: 1.3rem;
+  }
+
+  .btn-refresh {
+    svg {
+      margin-top: -3px;
+      margin-left: -2px;
+    }
   }
 }
 

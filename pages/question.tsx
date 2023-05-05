@@ -469,7 +469,7 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
     },
   ],
 ];
-
+const resultPageNumber = [0, 1, 2, 3];
 const QuestionPage: React.FC = () => {
   const router = useRouter();
   const [isDoing, setIsDoing] = useState(false);
@@ -483,7 +483,12 @@ const QuestionPage: React.FC = () => {
   const goQuestion = async (offset: number) => {
     const newIndex = currentQuestion + offset;
     if (newIndex > 7) {
-      await router.push("/answer");
+      await router.push({
+        pathname: "/answer",
+        query: {
+          r: getRandomFromArray(resultPageNumber),
+        },
+      });
       return;
     }
     if (newIndex < 0) {
@@ -659,3 +664,7 @@ const QuestionPage: React.FC = () => {
   );
 };
 export default QuestionPage;
+
+function getRandomFromArray<T>(arr: T[]) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
