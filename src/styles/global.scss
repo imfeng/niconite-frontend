@@ -74,6 +74,51 @@ body {
     position: absolute;
     width: 100%;
     top: 14%;
+
+    @media only screen and (min-width: 280px) {
+      top: 13%;
+    }
+    @media only screen and (min-width: 375px) {
+      top: 16.5%;
+    }
+    @media only screen and (min-width: 390px) {
+      top: 13.5%;
+    }
+    @media only screen and (min-width: 376px) and (min-width: 413px) {
+      top: 16.5%;
+    }
+    @media only screen and (min-width: 414px) {
+      top: 14%;
+    }
+    @media only screen and (min-width: 540px) {
+      top: 22%;
+    }
+    @media only screen and (min-width: 768px) {
+      top: 14%;
+    }
+    
+    @media only screen and (min-width: 820px) {
+      top: 14%;
+    }
+    @media only screen and (min-width: 1024px) {
+      top: 22%;
+    }
+    @media only screen and (min-width: 1280px) {
+      top: 14.5%;
+    }
+    @media only screen and (min-width: 1440px) {
+      top: 16.5%;
+    }
+    @media only screen and (min-width: 1600px) {
+      top: 15%;
+    }
+    @media only screen and (min-width: 1800px) {
+      top: 15%;
+    }
+    @media only screen and (min-width: 1920px) {
+      top: 14.5%;
+    }
+    
   }
 
   .computer {
@@ -104,6 +149,45 @@ body {
       color: #FF733A;
       font-weight: 500;
       font-size: 1.5rem;
+    }
+    @media only screen and (min-width: 280px) {
+      bottom: 37%;
+    }
+    @media only screen and (min-width: 375px) {
+      bottom: 20%;
+    }
+    @media only screen and (min-width: 390px) {
+      bottom: 35%;
+    }
+    @media only screen and (min-width: 414px) {
+      bottom: 36%;
+    }
+    @media only screen and (min-width: 540px) {
+      bottom: 5%;
+    }
+    @media only screen and (min-width: 768px) {
+      bottom: 30%;
+    }
+    @media only screen and (min-width: 820px) {
+      bottom: 30%;
+    }
+    @media only screen and (min-width: 1024px) {
+      bottom: 6%;
+    }
+    @media only screen and (min-width: 1280px) {
+      bottom: 31%;
+    }
+    @media only screen and (min-width: 1440px) {
+      bottom: 20%;
+    }
+    @media only screen and (min-width: 1600px) {
+      bottom: 20%;
+    }
+    @media only screen and (min-width: 1800px) {
+      bottom: 29%;
+    }
+    @media only screen and (min-width: 1920px) {
+      bottom: 27%;
     }
   }
 
