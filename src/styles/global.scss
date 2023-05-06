@@ -31,8 +31,8 @@ body {
   width: 100%;
   
   @media screen and (min-width:768px) { 
-    max-width: 480px;
-    max-height: 920px;
+    max-width: 440px;
+    max-height: 900px;
   }
 }
 
@@ -40,14 +40,14 @@ body {
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
-  max-height: 920px;
+  max-height: $maxHeight;
   position: relative;
   overflow: hidden;
   height: 100vh;
   overflow-y: auto;
 
-  @media screen and (min-height:920px) { 
-    height: 920px;
+  @media screen and (min-height:$maxHeight) { 
+    height: $maxHeight;
   }
 }
 
@@ -140,7 +140,7 @@ body {
     margin-bottom: 5rem;
     min-height: 75vh;
 
-    @media screen and (min-height:920px) { 
+    @media screen and (min-height: $maxHeight) { 
       min-height: 620px;
     }
 
