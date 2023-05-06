@@ -30,3 +30,14 @@ $subColor: #FF733A;
 @mixin box-light-large {
   box-shadow: 0 0 10px 2px rgb(254 240 1 / 63%) inset, 0 0 6px 2px rgb(218 237 63 / 71%), 0 0 15px 2px rgb(255 157 8 / 68%);
 }
+
+
+.blink {
+  animation: blinker 1.5s ease-in infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

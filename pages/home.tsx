@@ -31,7 +31,7 @@ const HomeMain: React.FC = () => {
           <span>ESC</span>
         </button>
       </header>
-      <div className="computer-box">
+      <div onClick={doLoading} className="computer-box">
         <Progress onCompleted={goQuestionPage} isShow={isLoading}></Progress>
         <div
           style={{
@@ -46,7 +46,7 @@ const HomeMain: React.FC = () => {
         <></>
       ) : (
         <div className="bottom-ctrl">
-          <button onClick={doLoading} className="btn-start">
+          <button onClick={doLoading} className="btn-start blink">
             PRESS TO START
           </button>
         </div>
