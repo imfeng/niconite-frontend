@@ -21,6 +21,7 @@ import ShareAns2 from "../src/assets/result2.png";
 import ShareAns3 from "../src/assets/result3.png";
 import ShareAns4 from "../src/assets/result4.png";
 import ShareAns5 from "../src/assets/result5.png";
+import PopupWindow from "../src/components/PopupWindow";
 
 const AnsInfoList = [
   {
@@ -75,6 +76,7 @@ const AnswerPage: React.FC = () => {
     responseAns: new Array(8).fill(0),
   });
   const [isShare, setIsShare] = useState(false);
+  const [isRefresh, setIsRefresh] = useState(false);
   const { name, img, imgDesc, alias, desc, enemy, pic } =
     AnsInfoList[currentAns];
 
@@ -133,10 +135,7 @@ const AnswerPage: React.FC = () => {
             <button onClick={() => setIsShare(true)} className="btn-result">
               Get Your Resault
             </button>
-            <button
-              onClick={() => router.push("/question")}
-              className="btn-refresh"
-            >
+            <button onClick={() => setIsRefresh(true)} className="btn-refresh">
               <IconRefresh></IconRefresh>
             </button>
           </div>
@@ -162,6 +161,13 @@ const AnswerPage: React.FC = () => {
           <></>
         )}
       </div>
+      <PopupWindow
+        text="你確定要重新做廁驗嗎？"
+        onConfirm={(isConfirm) =>
+          isConfirm ? router.push("/question") : setIsRefresh(false)
+        }
+        isShow={isRefresh}
+      ></PopupWindow>
     </MobileLayout>
   );
 };

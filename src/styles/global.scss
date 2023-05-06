@@ -1,6 +1,7 @@
 @import "./spec.scss";
 @import "./progress";
 @import "./question";
+@import "./silom.font.scss";
 
 html,
 body {
@@ -124,21 +125,6 @@ body {
 
   }
 
-  @media screen and (max-height:680px) { 
-    .content {
-      margin-top: .5rem!important;
-    }  
-    .logo-main {
-      img {
-        width: auto!important;
-        height: 200px;
-      }
-    }
-    .ctrl-box {
-      margin-top: 1rem!important;
-    }
-  }
-
   .ques-item {
     cursor: pointer;
   }
@@ -242,6 +228,38 @@ body {
         bottom: -2.5rem;
         right: 1rem;
       }
+    }
+  }
+
+
+  @media screen and (max-height:680px) {
+    .desc, .slogan {
+      p {
+        margin: .5rem 0;
+      }
+    }
+
+    .content {
+      margin-top: .5rem;
+      padding-top: 0;
+
+      .ques-text {
+        margin: .5rem auto;
+        font-size: 1.45rem;
+      }
+
+      .ques-text-sub {
+        font-size: 1.1rem!important;
+      }
+    }  
+    .logo-main {
+      img {
+        width: auto;
+        height: 200px;
+      }
+    }
+    .ctrl-box {
+      margin-top: 1rem;
     }
   }
 }
@@ -369,6 +387,7 @@ body {
   }
 
   .popup-share {
+    overflow-y: auto;
     background-color: rgba(24, 12, 0, 0.9);
     height: 100vh;
     width: 100%;
@@ -380,7 +399,7 @@ body {
     .tip {
       text-align: center;
       color: $mainColor;
-      margin-top: 2rem;
+      margin-top: 1rem;
       margin-bottom: .5rem;
     }
     .photo {
@@ -415,7 +434,8 @@ body {
   align-items: center;
 
   .btn-esc {
-    @include btn-shadow; 
+    @include btn-shadow;
+    @include font-silom;
     color: $mainColor;
     border: none;
     margin-left: 1rem;
@@ -524,6 +544,7 @@ body {
 }
 
 .popup {
+  z-index: 99;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -555,9 +576,10 @@ body {
       display: flex;
       button {
         flex: 1 1 0;
+        min-width: 92px;
       }
       .btn-cancel {
-        background-color: #FF733A;
+        background-color: #FF9839;
       }
     }
   }
@@ -570,6 +592,7 @@ pre {
 
 
 button {
+  @include font-silom;
   background: transparent;
   border: none;
   cursor: pointer;

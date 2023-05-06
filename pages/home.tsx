@@ -4,7 +4,7 @@ import computerLogo from "../src/assets/computer.png";
 import IconEsc from "../src/assets/icon-esc.svg";
 import { useRouter } from "next/router";
 import Progress from "../src/components/progress";
-import LeavePopup from "../src/components/LeavePopup";
+import PopupWindow from "../src/components/PopupWindow";
 
 const HomeMain: React.FC = () => {
   const router = useRouter();
@@ -51,14 +51,13 @@ const HomeMain: React.FC = () => {
           </button>
         </div>
       )}
-      {isLeaving ? (
-        <LeavePopup
-          onConfirm={() => setIsLeaving(false)}
-          isShow={isLeaving}
-        ></LeavePopup>
-      ) : (
-        <></>
-      )}
+      <PopupWindow
+        text="你確定要離開廁驗嗎？"
+        onConfirm={(isConfirm) =>
+          isConfirm ? router.push("/leave") : setIsLeaving(false)
+        }
+        isShow={isLeaving}
+      ></PopupWindow>
     </div>
   );
 };

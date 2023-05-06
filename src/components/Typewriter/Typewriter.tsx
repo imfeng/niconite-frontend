@@ -16,6 +16,7 @@ export interface ITypewriterProps {
   isEndShowCursor?: boolean;
   initialDelay?: number;
   style?: React.CSSProperties;
+  className?: string;
 }
 
 export default function Typewriter({
@@ -31,6 +32,7 @@ export default function Typewriter({
   onFinished = () => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onStart = () => {},
+  className = "",
   style = {},
 }: ITypewriterProps) {
   const [currentStringIndex, setCurrentStringIndex] = useState(0);
@@ -97,7 +99,7 @@ export default function Typewriter({
   }, [completed, isEndShowCursor]);
 
   return (
-    <p style={style} className={styles.typewriter}>
+    <p style={style} className={`${styles.typewriter} ${className}`}>
       {isStarted.current ? (
         <span style={currentSpanStyle}>
           {text[currentStringIndex].substring(0, currentTextIndex)}
