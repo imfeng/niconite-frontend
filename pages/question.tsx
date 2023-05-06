@@ -32,19 +32,35 @@ import QuestionProgress from "../src/components/QuestionProgress";
 // import Audio2Mp3 from "../src/assets/audio2.mp3";
 
 const useAudio = (url: any): [boolean, () => void] => {
-  const [audio] = useState(new Audio(url));
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(
+    typeof Audio !== "undefined" ? new Audio(url) : null
+  );
   const [playing, setPlaying] = useState(false);
 
   const toggle = () => setPlaying(!playing);
+  const stop = () => {
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+    setPlaying(false);
+  };
 
   useEffect(() => {
-    playing ? audio.play() : audio.pause();
+    if (!audio) {
+      setAudio(new Audio(url));
+    }
+    // only run once on the first render on the client
+  }, []);
+
+  useEffect(() => {
+    playing ? audio?.play() : stop();
   }, [playing]);
 
   useEffect(() => {
-    audio.addEventListener("ended", () => setPlaying(false));
+    audio?.addEventListener("ended", () => setPlaying(false));
     return () => {
-      audio.removeEventListener("ended", () => setPlaying(false));
+      audio?.removeEventListener("ended", () => setPlaying(false));
     };
   }, []);
 
@@ -513,9 +529,32 @@ const QuestionPage: React.FC = () => {
     setIsSubmiting(true);
   };
 
+  const playAudio = (idx: number) => {
+    if (audio1Playing && idx === 1) {
+      // stop audio1
+      console.log("stop audio1");
+      audio1Toggle();
+    }
+    if (audio2Playing && idx === 0) {
+      // stop audio2
+      console.log("stop audio2");
+      audio2Toggle();
+    }
+    if (idx === 0) {
+      console.log("start audio1");
+      audio1Toggle();
+    }
+    if (idx === 1) {
+      console.log("start audio2");
+      audio2Toggle();
+    }
+  };
   const onClickAns = useCallback(
     (idx: number) => {
       const currentList = [...ansList];
+      if (currentQuestion === 0) {
+        playAudio(idx);
+      }
 
       if (currentQuestion === 1) {
         const ans = (currentList[currentQuestion] || "").split(",");
@@ -544,6 +583,7 @@ const QuestionPage: React.FC = () => {
 
   function getOptions() {
     const opts = options[currentQuestion];
+
     if (currentQuestion === 1) {
       const result: any[] = [];
       for (let index = 0; index < opts.length; index += 3) {
@@ -627,19 +667,20 @@ const QuestionPage: React.FC = () => {
     }
   }
 
-  // const [audio1Playing, audio1Play] = useAudio(Audio1Mp3.src);
-  // const [audio2Playing, audio2Play] = useAudio(Audio2Mp3.src);
-  const playAudio = () => {
-    if (!audio1Playing) {
-      audio1Play();
-    }
-  };
+  const [audio1Playing, audio1Toggle] = useAudio("/audio1.mp3");
+  const [audio2Playing, audio2Toggle] = useAudio("/audio2.mp3");
 
   return (
     <MobileLayout>
       <div className="page page-question">
         <header className="header">
-          <button onClick={() => setIsLeaving(true)} className="btn-esc">
+          <button
+            style={{
+              visibility: isSubmiting ? "hidden" : "visible",
+            }}
+            onClick={() => setIsLeaving(true)}
+            className="btn-esc"
+          >
             <IconEsc className="icon-esc"></IconEsc>
             <span>ESC</span>
           </button>

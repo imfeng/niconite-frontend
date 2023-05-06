@@ -20,7 +20,13 @@ const HomeMain: React.FC = () => {
   return (
     <div className="page page-home">
       <header className="header">
-        <button onClick={() => setIsLeaving(true)} className="btn-esc">
+        <button
+          style={{
+            visibility: isLoading ? "hidden" : "visible",
+          }}
+          onClick={() => setIsLeaving(true)}
+          className="btn-esc"
+        >
           <IconEsc className="icon-esc"></IconEsc>
           <span>ESC</span>
         </button>
