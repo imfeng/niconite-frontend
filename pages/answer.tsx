@@ -84,6 +84,7 @@ const AnswerPage: React.FC = () => {
         style={{
           backgroundImage:
             currentAns === 4 ? `url(${BgCatImg.src})` : "transparent",
+          backgroundColor: currentAns === 4 ? "#180C00" : "transparent",
         }}
         className="page page-answer"
       >
@@ -141,7 +142,10 @@ const AnswerPage: React.FC = () => {
           </div>
         </footer>
         {isShare ? (
-          <div className="popup-share">
+          <div
+            onClick={(e) => e.currentTarget === e.target && setIsShare(false)}
+            className="popup-share"
+          >
             <div className="tip">
               <p>長按以儲存結果頁</p>
             </div>

@@ -221,6 +221,12 @@ body {
       // position: absolute;
       bottom: -4.5rem;
       right: 1rem;
+
+      &.disabled {
+        opacity: .7;
+        // color: $subColor;
+        // border-color: $subColor;
+      }
     }
 
   }
@@ -274,6 +280,7 @@ body {
   }
 
   .title {
+    @include text-shine;
     z-index: 5;
     color: $mainColor;
     font-weight: bold;
@@ -338,13 +345,16 @@ body {
     }
 
     .detail {
+      h3 {
+        @include text-shine;
+      }
       h3, p {
         margin: .2rem 0;
       }
       margin: 0 auto;
 
       p {
-        text-align: left;
+        text-align: center;
         padding: .3rem 2rem;
         font-size: .9rem;
       }
@@ -405,6 +415,7 @@ body {
   align-items: center;
 
   .btn-esc {
+    @include btn-shadow; 
     color: $mainColor;
     border: none;
     margin-left: 1rem;
@@ -472,6 +483,14 @@ body {
       display: inline-block;
     }
   }
+}
+
+.text-light {
+  @include text-light;
+}
+
+.box-light {
+  @include box-light;
 }
 
 .footer {
@@ -560,6 +579,7 @@ button {
   border-radius: 15px;
   padding: .3rem .7rem;
   color: $mainColor;
+  
   
 
   &:not(:last-of-type) {

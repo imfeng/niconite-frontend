@@ -76,7 +76,19 @@ const questions = [
     <p>請選出含有真的貓咪的照片</p>
     <p>(=^‥^=)</p>
   </>,
-  <p>請觀看以下問題及回覆，選出哪個是AI回答的。</p>,
+  <>
+    <p>請觀看以下問題及回覆，選出哪個是AI回答的。</p>
+    <br />
+    <p
+      style={{
+        fontSize: "1.3rem",
+        textAlign: "left",
+        padding: "0 1rem",
+      }}
+    >
+      女友：寶貝寶貝，你覺得哪個色號的口紅更適合我？乾燥玫瑰粉還是這隻鮭魚粉呀～
+    </p>
+  </>,
   <p>外表生心理條件都一樣並符合你的需求下，你會選擇誰當伴侶?</p>,
   <p>你覺得哪個迷因更好笑？</p>,
   <p>你願意接受誰的告白？</p>,
@@ -493,14 +505,13 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
     },
   ],
 ];
-const resultPageNumber = [0, 1, 2, 3];
-const CorrectAnswer = ["3", "2", "1", "2", "1", "1", "1", "2"];
+const CorrectAnswerList = ["0", "2,3,4,5,7,8", "1", "0", "1", "0,3", "1", "0"];
+const CatAnswerList = ["", "", "2", "2", "", "4", "", "", ""];
 const QuestionPage: React.FC = () => {
   const router = useRouter();
   const [isDoing, setIsDoing] = useState(false);
   const [currentQuestion, setQuestion] = useState(0);
   const [ansList, setAnsList] = useState<(string | null)[]>(defaultAns);
-  const [activeQues, setActiveQues] = useState<number | null>(null);
   const [isLeaving, setIsLeaving] = useState(false);
   const [isSubmiting, setIsSubmiting] = useState(false);
 
@@ -508,22 +519,46 @@ const QuestionPage: React.FC = () => {
     return ansList[currentQuestion] || "";
   }, [ansList, currentQuestion]);
 
-  const goQuestion = async (offset: number) => {
-    const newIndex = currentQuestion + offset;
-    if (newIndex > 7) {
-      await router.push({
-        pathname: "/answer",
-        query: {
-          r: getRandomFromArray(resultPageNumber),
-        },
-      });
-      return;
-    }
-    if (newIndex < 0) {
-      return;
-    }
-    setQuestion(newIndex);
-  };
+  const isNextDisabled = useMemo<boolean>(() => {
+    return !currentAnswer;
+  }, [ansList, currentQuestion]);
+
+  const goQuestion = useCallback(
+    async (offset: number) => {
+      const newIndex = currentQuestion + offset;
+      if (newIndex > 7) {
+        const score = calcCorrectAns(ansList);
+        let result = 0;
+        if (score <= 2) {
+          result = 0;
+        } else if (score > 2 && score <= 4) {
+          result = 1;
+        } else if (score > 4 && score <= 6) {
+          result = 2;
+        } else if (score > 6 && score <= 8) {
+          result = 3;
+        } else {
+          result = 4;
+        }
+        console.log({
+          score,
+          result,
+        });
+        await router.push({
+          pathname: "/answer",
+          query: {
+            r: result,
+          },
+        });
+        return;
+      }
+      if (newIndex < 0) {
+        return;
+      }
+      setQuestion(newIndex);
+    },
+    [ansList, router, setQuestion]
+  );
 
   const submit = () => {
     setIsSubmiting(true);
@@ -700,8 +735,12 @@ const QuestionPage: React.FC = () => {
               </div>
               <div className="ques-form">
                 <div className="options">{getOptions()}</div>
-                {currentQuestion === 0 && <p className="tips">*請開啟音量*</p>}
-                {currentQuestion === 1 && <p className="tips">*複選題*</p>}
+                {currentQuestion === 0 && (
+                  <p className="tips text-light">*請開啟音量*</p>
+                )}
+                {currentQuestion === 1 && (
+                  <p className="tips text-light">*複選題*</p>
+                )}
               </div>
             </div>
             <div className="ctrl-fixed-box">
@@ -715,11 +754,17 @@ const QuestionPage: React.FC = () => {
                 BACK
               </button>
               {currentQuestion === 7 ? (
-                <button onClick={() => submit()} className="btn-next">
+                <button
+                  onClick={() => submit()}
+                  className={`btn-next ${isNextDisabled ? "disabled" : ""}`}
+                >
                   SUBMIT
                 </button>
               ) : (
-                <button onClick={() => goQuestion(1)} className="btn-next">
+                <button
+                  onClick={() => goQuestion(1)}
+                  className={`btn-next ${isNextDisabled ? "disabled" : ""}`}
+                >
                   NEXT
                 </button>
               )}
@@ -795,3 +840,24 @@ export default QuestionPage;
 function getRandomFromArray<T>(arr: T[]) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
+
+function calcCorrectAns(answerList: (string | null)[]) {
+  let score = 0;
+  for (let index = 0; index < answerList.length; index++) {
+    const ans = answerList[index]?.split(",") || [];
+    const correct = CorrectAnswerList[index].split(",");
+    // ans have any item in corrects
+    if (ans.some((item) => correct.includes(item))) {
+      score++;
+    }
+
+    const catCorrect = CatAnswerList[index].split(",");
+    if (ans.some((item) => catCorrect.includes(item))) {
+      score = 99;
+      break;
+    }
+  }
+
+  return score;
+}
+console.log({ calcCorrectAns });
