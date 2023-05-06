@@ -10,9 +10,9 @@ const Home: React.FC = () => {
   return (
     <MobileLayout>
       <div className="page page-leave">
-        <div className="sub-title">
+        {/* <div className="sub-title">
           <p>這是在滑這則心力廁驗的你</p>
-        </div>
+        </div> */}
         <div className="title">
           <h1>
             你以為你的生活, <br></br>真的能離開AI嗎？
