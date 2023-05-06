@@ -24,9 +24,7 @@ export const LeavePopup: React.FC<LeavePopupProps> = ({
         <div className="logo">
           <img src={LogoImg.src} alt="" />
         </div>
-        <div className="hint">
-          <p>你確定要離開廁驗嗎？</p>
-        </div>
+
         <div className="btns">
           <button onClick={() => router.push("/leave")} className="btn-confirm">
             CONFIRM

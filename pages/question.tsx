@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { MobileLayout } from "@components/layout/mobile-layout";
 
 import computerLogo from "../src/assets/computer.png";
@@ -28,8 +34,9 @@ import Ans6q5Img from "../src/assets/ans6-q5.png";
 import { useRouter } from "next/router";
 import LeavePopup from "../src/components/LeavePopup";
 import QuestionProgress from "../src/components/QuestionProgress";
-// import Audio1Mp3 from "../src/assets/audio1.mp3";
-// import Audio2Mp3 from "../src/assets/audio2.mp3";
+import Typewriter, {
+  DEFAULT_TYPE_MS,
+} from "../src/components/Typewriter/Typewriter";
 
 const useAudio = (url: any): [boolean, () => void] => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(
@@ -67,33 +74,92 @@ const useAudio = (url: any): [boolean, () => void] => {
   return [playing, toggle];
 };
 
-const questions = [
-  <>
-    <p>聽聽以下幾種聲音，</p>
-    <p>請選出哪個是由AI生成的?</p>
-  </>,
-  <>
-    <p>請選出含有真的貓咪的照片</p>
-    <p>(=^‥^=)</p>
-  </>,
-  <>
-    <p>請觀看以下問題及回覆，選出哪個是AI回答的。</p>
-    <br />
-    <p
-      style={{
-        fontSize: "1.3rem",
-        textAlign: "left",
-        padding: "0 1rem",
-      }}
-    >
-      女友：寶貝寶貝，你覺得哪個色號的口紅更適合我？乾燥玫瑰粉還是這隻鮭魚粉呀～
-    </p>
-  </>,
-  <p>外表生心理條件都一樣並符合你的需求下，你會選擇誰當伴侶?</p>,
-  <p>你覺得哪個迷因更好笑？</p>,
-  <p>你願意接受誰的告白？</p>,
-  <p>你覺得人類會愛上AI嗎？</p>,
-  <p>你覺得出這些題目的是誰？</p>,
+type QuestionProps = {
+  isShow: boolean;
+  children?: React.ReactNode;
+};
+
+const questions: Array<React.FC<QuestionProps>> = [
+  ({ isShow }) => {
+    return isShow ? (
+      <>
+        <Typewriter text="聽聽以下幾種聲音，"></Typewriter>
+        <Typewriter
+          initialDelay={DEFAULT_TYPE_MS * 16}
+          text="請選出哪個是由AI生成的？"
+        ></Typewriter>
+      </>
+    ) : (
+      <></>
+    );
+  },
+  ({ isShow }) => {
+    return isShow ? (
+      <>
+        <Typewriter text="請選出含有真的貓咪的照片"></Typewriter>
+        <Typewriter
+          initialDelay={DEFAULT_TYPE_MS * 25}
+          text="(=^‥^=)"
+        ></Typewriter>
+      </>
+    ) : (
+      <></>
+    );
+  },
+  ({ isShow }) => {
+    return isShow ? (
+      <>
+        <Typewriter text="請觀看以下問題及回覆，選出哪個是AI回答的。"></Typewriter>
+        <br />
+        <Typewriter
+          style={{
+            fontSize: "1.3rem",
+            textAlign: "left",
+            padding: "0 1rem",
+          }}
+          initialDelay={DEFAULT_TYPE_MS * 45}
+          text="女友：寶貝寶貝，你覺得哪個色號的口紅更適合我？乾燥玫瑰粉還是這隻鮭魚粉呀～"
+        ></Typewriter>
+      </>
+    ) : (
+      <></>
+    );
+  },
+  ({ isShow }) => {
+    return isShow ? (
+      <Typewriter text="外表生心理條件都一樣並符合你的需求下，你會選擇誰當伴侶？"></Typewriter>
+    ) : (
+      <></>
+    );
+  },
+  ({ isShow }) => {
+    return isShow ? (
+      <Typewriter text="你覺得哪個迷因更好笑？"></Typewriter>
+    ) : (
+      <></>
+    );
+  },
+  ({ isShow }) => {
+    return isShow ? (
+      <Typewriter text="你願意接受誰的告白？"></Typewriter>
+    ) : (
+      <></>
+    );
+  },
+  ({ isShow }) => {
+    return isShow ? (
+      <Typewriter text="你覺得人類會愛上AI嗎？"></Typewriter>
+    ) : (
+      <></>
+    );
+  },
+  ({ isShow }) => {
+    return isShow ? (
+      <Typewriter text="你覺得出這些題目的是誰？"></Typewriter>
+    ) : (
+      <></>
+    );
+  },
 ];
 
 type QuesItemProps = {
@@ -111,7 +177,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a1-1"
           className={"ques-item ques-audio " + (props.isActive ? "active" : "")}
         >
           <div className="point">
@@ -127,7 +192,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a1-2"
           className={"ques-item ques-audio " + (props.isActive ? "active" : "")}
         >
           <div className="point">
@@ -145,7 +209,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-1"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -158,7 +221,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-2"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -171,7 +233,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-3"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -184,7 +245,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-4"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -197,7 +257,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-5"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -210,7 +269,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-6"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -223,7 +281,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-7"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -236,7 +293,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-8"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -249,7 +305,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a2-9"
           className={
             "ques-item ques-block-s cat " + (props.isActive ? "active" : "")
           }
@@ -264,7 +319,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a3-1"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">01</div>
@@ -278,7 +332,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a3-2"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">02</div>
@@ -294,7 +347,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a3-3"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">03</div>
@@ -310,7 +362,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a4-1"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">A:</div>
@@ -324,7 +375,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a4-2"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">B:</div>
@@ -338,7 +388,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a4-3"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">C:</div>
@@ -354,7 +403,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a5-1"
           className={"ques-item ques-photo " + (props.isActive ? "active" : "")}
         >
           <div className="photo">
@@ -367,7 +415,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a5-2"
           className={"ques-item ques-photo " + (props.isActive ? "active" : "")}
         >
           <div className="photo">
@@ -382,7 +429,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a6-1"
           className={
             "ques-item ques-block-s " + (props.isActive ? "active" : "")
           }
@@ -395,7 +441,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a6-2"
           className={
             "ques-item ques-block-s " + (props.isActive ? "active" : "")
           }
@@ -408,7 +453,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a6-3"
           className={
             "ques-item ques-block-s " + (props.isActive ? "active" : "")
           }
@@ -421,7 +465,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a6-4"
           className={
             "ques-item ques-block-s " + (props.isActive ? "active" : "")
           }
@@ -434,7 +477,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a6-5"
           className={
             "ques-item ques-block-s full " + (props.isActive ? "active" : "")
           }
@@ -449,7 +491,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a7-1"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">A:</div>
@@ -463,7 +504,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a7-2"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">B:</div>
@@ -479,7 +519,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a8-1"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">A:</div>
@@ -493,7 +532,6 @@ const options: Array<Array<React.FC<QuesItemProps>>> = [
       return (
         <div
           onClick={() => props.onClick && props.onClick(props.idx)}
-          key="a8-2"
           className={"ques-item ques-ans " + (props.isActive ? "active" : "")}
         >
           <div className="point">B:</div>
@@ -557,7 +595,7 @@ const QuestionPage: React.FC = () => {
       }
       setQuestion(newIndex);
     },
-    [ansList, router, setQuestion]
+    [currentQuestion, ansList, router, setQuestion]
   );
 
   const submit = () => {
@@ -627,7 +665,7 @@ const QuestionPage: React.FC = () => {
         const Item2 = opts[idx + 1];
         const Item3 = opts[idx + 2];
         result.push(
-          <div className="ques-group">
+          <div key={`a2pg-${idx}`} className="ques-group">
             <Item1
               key={`a2p-${idx}`}
               idx={idx}
@@ -657,7 +695,7 @@ const QuestionPage: React.FC = () => {
         const Item1 = opts[idx];
         const Item2 = opts[idx + 1];
         result.push(
-          <div className="ques-group">
+          <div key={`a6pg-${idx}`} className="ques-group">
             <Item1
               key={`a6p-${idx}`}
               idx={idx}
@@ -675,7 +713,7 @@ const QuestionPage: React.FC = () => {
       }
       const LastItem = options[5][4];
       result.push(
-        <div className="ques-group">
+        <div key={`a6pg-${3}`} className="ques-group">
           <LastItem
             key={`a6p-5`}
             idx={5}
@@ -720,7 +758,7 @@ const QuestionPage: React.FC = () => {
             <span>ESC</span>
           </button>
 
-          <div onClick={() => router.push("/")} className="logo">
+          <div className="logo">
             <img src={LogoImg.src} alt="" />
           </div>
         </header>
@@ -731,7 +769,12 @@ const QuestionPage: React.FC = () => {
                 <p>{(currentQuestion + 1).toString().padStart(2, "0")}/08</p>
               </div>
               <div className="ques-text">
-                <p>{questions[currentQuestion]}</p>
+                {questions.map((Ques, qidx) => (
+                  <Ques
+                    key={`q${qidx}`}
+                    isShow={qidx === currentQuestion}
+                  ></Ques>
+                ))}
               </div>
               <div className="ques-form">
                 <div className="options">{getOptions()}</div>

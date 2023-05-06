@@ -1,0 +1,40 @@
+.typewriter {
+    // position: relative;
+    --color: #FFD978;
+    box-sizing: border-box;
+    span {
+        border-right: .3em solid transparent; /* The typwriter cursor */
+        animation: blink-caret .9s steps(30, end) infinite;
+    }
+}
+.cursor {
+    // position: absolute;
+    // right: -1.3rem;
+  animation: blinkingText 1s infinite;
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--color) }
+  }
+
+@keyframes blinkingText {
+  0% {
+      opacity: 1;
+  }
+
+  49% {
+      opacity: 1;
+  }
+
+  60% {
+      opacity: 0;
+  }
+
+  99% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+}
