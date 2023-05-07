@@ -12,6 +12,8 @@ import ans4DescImg from "../src/assets/ans4-desc.png";
 import ans5DescImg from "../src/assets/ans5-desc.png";
 import IconEsc from "../src/assets/icon-esc.svg";
 import IconDown from "../src/assets/icon-down.svg";
+import IconDownload from "../src/assets/icon-download.svg";
+import IconShare from "../src/assets/icon-share.svg";
 import IconRefresh from "../src/assets/icon-refresh.svg";
 import BgCatImg from "../src/assets/bg-cat.png";
 import { useRouter } from "next/router";
@@ -155,6 +157,10 @@ const AnswerPage: React.FC = () => {
               <a href={pic} target="_blank" download={pic}>
                 <img src={pic} alt="" />
               </a>
+            </div>
+            <div className="controls">
+              <IconShare></IconShare>
+              <IconDownload></IconDownload>
             </div>
           </div>
         ) : (

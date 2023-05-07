@@ -1,3 +1,4 @@
+@import "../../styles/spec.scss";
 
 .layout {
   background: url("../../assets/bg-s.png");
@@ -29,5 +30,7 @@
     width: 100%;
     height: 100%;
     min-height: 100%;
+
+    max-height: $maxHeight;
   }
 }
