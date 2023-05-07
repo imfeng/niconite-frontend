@@ -7,8 +7,6 @@ type ProgressProps = {
   onCompleted?: () => void;
 };
 
-const customCubic = cubicBezier(0.1, 0.7, 0.9, 0.1, 1 / 100);
-
 export const Progress: React.FC<ProgressProps> = ({ children, ...props }) => {
   const oldValue = useRef(0);
   const interval = useRef(0);
