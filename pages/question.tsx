@@ -43,13 +43,13 @@ const QuestionPage: React.FC = () => {
         const score = calcCorrectAns(ansList);
         let result = 0;
         if (score <= 2) {
-          result = 0;
-        } else if (score > 2 && score <= 4) {
-          result = 1;
-        } else if (score > 4 && score <= 6) {
-          result = 2;
-        } else if (score > 6 && score <= 8) {
           result = 3;
+        } else if (score > 2 && score <= 4) {
+          result = 2;
+        } else if (score > 4 && score <= 6) {
+          result = 1;
+        } else if (score > 6 && score <= 8) {
+          result = 0;
         } else {
           result = 4;
         }
