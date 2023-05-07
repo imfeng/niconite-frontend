@@ -23,6 +23,9 @@ export const useAudio = (url: any): [boolean, () => void] => {
   }, []);
 
   useEffect(() => {
+    if (!audio) {
+      setAudio(new Audio(url));
+    }
     playing ? audio?.play() : stop();
   }, [playing]);
 

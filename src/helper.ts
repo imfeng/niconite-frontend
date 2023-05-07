@@ -3,7 +3,7 @@ export function share(title: string, text: string, url: string) {
   const shareData = {
     title,
     text,
-    url: "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share",
+    url,
     // files: [file],
   };
 

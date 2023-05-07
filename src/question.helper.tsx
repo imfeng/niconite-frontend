@@ -65,7 +65,7 @@ export const questions: Array<React.FC<QuestionProps>> = [
             padding: "0 1rem",
           }}
           className="ques-text-sub"
-          initialDelay={DEFAULT_TYPE_MS * 45}
+          initialDelay={DEFAULT_TYPE_MS * 35}
           text="女友：寶貝寶貝，你覺得哪個色號的口紅更適合我？乾燥玫瑰粉還是這隻鮭魚粉呀～"
         ></Typewriter>
       </>
