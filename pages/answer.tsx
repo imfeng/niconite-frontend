@@ -24,6 +24,7 @@ import ShareAns3 from "../src/assets/result3.png";
 import ShareAns4 from "../src/assets/result4.png";
 import ShareAns5 from "../src/assets/result5.png";
 import PopupWindow from "../src/components/PopupWindow";
+import { share } from "src/helper";
 
 const AnsInfoList = [
   {
@@ -154,13 +155,17 @@ const AnswerPage: React.FC = () => {
               <button onClick={() => setIsShare(false)} className="btn-esc">
                 <IconEsc className="icon-esc"></IconEsc>
               </button>
-              <a href={pic} target="_blank" download={pic}>
-                <img src={pic} alt="" />
-              </a>
+              {/* <a href={pic} target="_blank" download={pic}> */}
+              <img src={pic} alt="" />
+              {/* </a> */}
             </div>
             <div className="controls">
-              <IconShare></IconShare>
-              <IconDownload></IconDownload>
+              <IconShare
+                onClick={() => share("NICONITE 心理廁驗", "", pic)}
+              ></IconShare>
+              <a href={pic} target="_blank" download={pic}>
+                <IconDownload></IconDownload>
+              </a>
             </div>
           </div>
         ) : (
