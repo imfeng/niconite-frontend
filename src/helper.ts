@@ -12,12 +12,12 @@ export function share(title: string, text: string, url: string) {
     navigator
       .share(shareData)
       .then(() => alert("分享成功"))
-      .catch((err) => alert("發生錯誤:" + err));
+      .catch((err) => 1);
   } else {
     // 沒有分享功能就複製網址到剪貼簿
     navigator.clipboard
       .writeText(location.href)
       .then(() => alert("已複製網頁網址"))
-      .catch(() => alert("複製失敗"));
+      .catch(() => 1);
   }
 }
