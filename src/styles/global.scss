@@ -508,6 +508,20 @@ body {
 
       }
     }
+
+    .controls {
+      text-align: center;
+      svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 .5rem;
+        cursor: pointer;
+        vertical-align: middle;
+        path {
+          stroke: $mainColor;
+        }
+      }
+    }
   }
 }
 
@@ -560,8 +574,9 @@ body {
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  padding: 3rem 1rem;
 
   .sub-title {
     color: $subColor;
@@ -578,6 +593,7 @@ body {
   }
 
   .control {
+    // margin-top: 3rem;
     font-weight: 400;
     display: flex;
     color: $subColor;
@@ -590,6 +606,29 @@ body {
     & > * {
       vertical-align: middle;
       display: inline-block;
+    }
+  }
+
+  .logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    img {
+      width: 110px;
+      vertical-align: middle;
+    }
+
+    svg {
+      @include svg-shine;
+      vertical-align: middle;
+      margin: 0 .3rem;
+      path {
+        stroke: $mainColor;
+
+      }
+      width: 30px;
+      height: 30px;
     }
   }
 }

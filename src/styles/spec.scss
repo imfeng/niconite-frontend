@@ -22,6 +22,9 @@ $subColor: #FF733A;
   // box-shadow: rgb(37 37 37 / 50%) 3px 3px 6px;
 }
 
+@mixin svg-shine {
+  filter: drop-shadow( 1px 1px 10px rgb(254 240 1 / 73%));
+}
 
 @mixin box-light {
   box-shadow: 0 0 10px rgb(254 240 1 / 63%) inset, 0 0 6px rgb(218 237 63 / 71%), 0 0 15px rgb(255 157 8 / 68%);

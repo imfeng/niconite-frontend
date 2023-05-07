@@ -1,17 +1,7 @@
-<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_612_551)">
-<path d="M13.2533 16.0833L17.5866 18.25M17.5866 11.75L13.2533 13.9167M19.7533 21.5C18.5566 21.5 17.5866 20.53 17.5866 19.3333C17.5866 18.1367 18.5566 17.1667 19.7533 17.1667C20.9499 17.1667 21.9199 18.1367 21.9199 19.3333C21.9199 20.53 20.9499 21.5 19.7533 21.5ZM11.0866 17.1667C9.88997 17.1667 8.91992 16.1967 8.91992 15C8.91992 13.8033 9.88997 12.8333 11.0866 12.8333C12.2832 12.8333 13.2533 13.8033 13.2533 15C13.2533 16.1967 12.2832 17.1667 11.0866 17.1667ZM19.7533 12.8333C18.5566 12.8333 17.5866 11.8633 17.5866 10.6667C17.5866 9.47005 18.5566 8.5 19.7533 8.5C20.9499 8.5 21.9199 9.47005 21.9199 10.6667C21.9199 11.8633 20.9499 12.8333 19.7533 12.8333Z" stroke="#FFD978" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Communication / Share_Android">
+<path id="Vector" d="M9 13.5L15 16.5M15 7.5L9 10.5M18 21C16.3431 21 15 19.6569 15 18C15 16.3431 16.3431 15 18 15C19.6569 15 21 16.3431 21 18C21 19.6569 19.6569 21 18 21ZM6 15C4.34315 15 3 13.6569 3 12C3 10.3431 4.34315 9 6 9C7.65685 9 9 10.3431 9 12C9 13.6569 7.65685 15 6 15ZM18 9C16.3431 9 15 7.65685 15 6C15 4.34315 16.3431 3 18 3C19.6569 3 21 4.34315 21 6C21 7.65685 19.6569 9 18 9Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
-<defs>
-<filter id="filter0_d_612_551" x="0.919922" y="0.5" width="29" height="29" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset/>
-<feGaussianBlur stdDeviation="3.5"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0.862745 0 0 0 0 0.735059 0 0 0 0 0.282353 0 0 0 1 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_612_551"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_612_551" result="shape"/>
-</filter>
-</defs>
 </svg>
