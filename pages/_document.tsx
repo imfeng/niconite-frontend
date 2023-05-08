@@ -52,7 +52,7 @@ class CustomDocument extends Document {
           <meta property="og:type" content="" />
           <meta
             property="og:image"
-            content="https://niconite-frontend.vercel.app/profile.png"
+            content="https://niconite-frontend.vercel.app/profile.jpg"
           />
         </Head>
         <body>

@@ -313,7 +313,7 @@ const QuestionPage: React.FC = () => {
                   <img src={LogoMainImg.src} alt="" />
                 </div>
                 <div className="slogan">
-                  <p>「Niconite尼可柰」體驗創作團隊，</p>
+                  <p>「Niconite尼可奈」體驗創作團隊，</p>
                   <p>致力於創造讓人上癮的娛樂活動。</p>
                 </div>
               </div>

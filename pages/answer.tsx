@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { MobileLayout } from "@components/layout/mobile-layout";
 
 import computerAns1Img from "../src/assets/com-ans1.png";
@@ -25,6 +25,8 @@ import ShareAns4 from "../src/assets/result4.png";
 import ShareAns5 from "../src/assets/result5.png";
 import PopupWindow from "../src/components/PopupWindow";
 import { share } from "src/helper";
+import { useWindowSize } from "react-use";
+import dynamic from "next/dynamic";
 
 const AnsInfoList = [
   {
@@ -71,6 +73,10 @@ const AnsInfoList = [
     enemy: "無，睿智的你就是你自己最大的敵人",
   },
 ];
+
+const bgImageWidth = 830;
+const bgImageHeight = 1800;
+const bgImageRatio = bgImageWidth / bgImageHeight;
 const AnswerPage: React.FC = () => {
   const router = useRouter();
   const queryAns = parseInt(router.query.r as string) || 0;
@@ -97,6 +103,27 @@ const AnswerPage: React.FC = () => {
     }
     // pageRef.current && pageRef.current.scrollTop;
   };
+
+  const { width: _width, height: _height } = useWindowSize();
+  const itemPos = useMemo(() => {
+    const __height = Math.min(
+      window.screen.availHeight || _height || 0,
+      window.innerHeight || 0
+    );
+
+    const width = _width >= 768 ? 440 : _width;
+    const height = _width >= 768 ? 990 - 30 : __height - 30;
+
+    const windowRatio = width / height;
+    const itemWidth = width * 0.8; // equal to 80% window width
+    const itemHeight = (itemWidth / 359) * 367;
+    // const itemRatio = itemWidth / itemHeight;
+    const realBgImageHeight = (width * bgImageHeight) / bgImageWidth - 10;
+    return {
+      top: realBgImageHeight * 0.13,
+      left: 0,
+    };
+  }, [_width, _height]);
   return (
     <MobileLayout>
       <div
@@ -119,7 +146,12 @@ const AnswerPage: React.FC = () => {
           <h1>{name}</h1>
         </div>
         {img ? (
-          <div className="computer-box">
+          <div
+            style={{
+              top: `${itemPos.top}px`,
+            }}
+            className="computer-box"
+          >
             <div className="computer">
               <img src={img} alt="" />
             </div>
@@ -199,7 +231,11 @@ const AnswerPage: React.FC = () => {
     </MobileLayout>
   );
 };
-export default AnswerPage;
+// export default AnswerPage;
+
+export default dynamic(() => Promise.resolve(AnswerPage), {
+  ssr: false,
+});
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
