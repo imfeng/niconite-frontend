@@ -8,7 +8,12 @@
   background-attachment: local;
   //  830px*0.5 1800px*0.5;
   
-  min-height: 100vh;
+  min-height: 100%;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+  height: stretch; /* Latest specification */
+
   color: white;
 
   overflow: hidden;

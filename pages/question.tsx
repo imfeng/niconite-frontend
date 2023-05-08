@@ -15,12 +15,21 @@ import {
   CorrectAnswerList,
   CatAnswerList,
 } from "src/question.helper";
-import { useAudio } from "../src/hooks/useAudio";
+import { useAudio } from "react-use";
+// import { useAudio } from "../src/hooks/useAudio";
 
 const QuestionPage: React.FC = () => {
   const router = useRouter();
-  const [audio1Playing, audio1Toggle] = useAudio("/audio1.mp3");
-  const [audio2Playing, audio2Toggle] = useAudio("/audio2.mp3");
+  const [Audio1, state1, controls1, ref1] = useAudio({
+    src: "/audio1.mp3",
+    autoPlay: false,
+  });
+  const [Audio2, state2, controls2, ref2] = useAudio({
+    src: "/audio2.mp3",
+    autoPlay: false,
+  });
+  // const [audio1Playing, audio1Toggle] = useAudio("/audio1.mp3");
+  // const [audio2Playing, audio2Toggle] = useAudio("/audio2.mp3");
 
   const [isDoing, setIsDoing] = useState(false);
   const [currentQuestion, setQuestion] = useState(0);
@@ -76,24 +85,26 @@ const QuestionPage: React.FC = () => {
 
   const playAudio = useCallback(
     (idx: number) => {
-      if (audio1Playing && idx === 1) {
-        console.log("stop audio1");
-        audio1Toggle();
-      }
-      if (audio2Playing && idx === 0) {
-        console.log("stop audio2");
-        audio2Toggle();
-      }
+      console.log({
+        state1,
+        state2,
+        Audio1,
+        Audio2,
+      });
+      controls1.pause();
+      controls2.pause();
       if (idx === 0) {
         console.log("start audio1");
-        audio1Toggle();
+        controls1.seek(0);
+        controls1.play();
       }
       if (idx === 1) {
         console.log("start audio2");
-        audio2Toggle();
+        controls2.seek(0);
+        controls2.play();
       }
     },
-    [audio1Playing, audio2Playing]
+    [ref1, ref2, state1, state2, controls1, controls2]
   );
   const onClickAns = useCallback(
     (idx: number) => {
@@ -208,6 +219,10 @@ const QuestionPage: React.FC = () => {
 
   return (
     <MobileLayout>
+      <div className="hidden">
+        {Audio1}
+        {Audio2}
+      </div>
       <div className="page page-question">
         <header className="header">
           <button
@@ -280,14 +295,7 @@ const QuestionPage: React.FC = () => {
           </>
         ) : (
           <>
-            <div
-              style={{
-                justifyContent: "center",
-                marginTop: "2rem",
-                display: "initial",
-              }}
-              className="content"
-            >
+            <div className="content content-start">
               <div className="intro">
                 {isSubmitting ? (
                   <></>

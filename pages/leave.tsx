@@ -10,6 +10,7 @@ import WebLogoImg from "./../src/assets/logo-nicoweb.png";
 import IconDownload from "../src/assets/icon-download.svg";
 import IconShare from "../src/assets/icon-share.svg";
 import BgLeaveImg from "../src/assets/bg-leave.png";
+import EscShareImg from "../src/assets/esc-share.png";
 import { share } from "src/helper";
 const Home: React.FC = () => {
   const router = useRouter();
@@ -36,7 +37,11 @@ const Home: React.FC = () => {
             <IconShare
               onClick={() => share("NICONITE 心理廁驗", "", BgLeaveImg.src)}
             ></IconShare>
-            <a href={BgLeaveImg.src} target="_blank" download={BgLeaveImg.src}>
+            <a
+              href={EscShareImg.src}
+              target="_blank"
+              download={EscShareImg.src}
+            >
               <IconDownload></IconDownload>
             </a>
           </div>

@@ -4,10 +4,10 @@
     viewBox="0 0 18 18"
     fill="none"
     xmlns="http://www.w3.org/2000/svg">
-    <g style="mix-blend-mode:overlay">
+    <g>
         <path d="M7 7L11 11" stroke="#FFD978" stroke-width="2" stroke-linecap="round"/>
         <path d="M11 7L7 11" stroke="#FFD978" stroke-width="2" stroke-linecap="round"/>
-        <g style="mix-blend-mode:overlay">
+        <g>
             <rect
                 x="1"
                 y="1.25"

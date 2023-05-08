@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { MobileLayout } from "@components/layout/mobile-layout";
 
 import computerAns1Img from "../src/assets/com-ans1.png";
@@ -32,7 +32,7 @@ const AnsInfoList = [
     name: "((:奎爾特:))",
     img: computerAns1Img.src,
     imgDesc: ans1DescImg.src,
-    alias: "((: 創造者 :))",
+    alias: "((: 造物者 :))",
     desc: "你是精英中的精英，與生俱來的觀察力洞悉所有操作，AI就是你智慧下的產物。你擁有開放性思考特質，擅長縱觀全局並俯瞰問題的存在，真正的智慧使你敏銳判別什麼是真什麼是假，人類的生存密碼也許就掌握在你手裡！",
   },
   {
@@ -83,13 +83,29 @@ const AnswerPage: React.FC = () => {
   const { name, img, imgDesc, alias, desc, enemy, pic } =
     AnsInfoList[currentAns];
 
+  const pageRef = useRef<HTMLDivElement>(null);
+  const getResult = async () => {
+    setIsShare(true);
+    // console.log({
+    //   pageRef,
+    // });
+    await delay(300);
+    const element = document.getElementById("share");
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      element.scrollIntoView();
+    }
+    // pageRef.current && pageRef.current.scrollTop;
+  };
   return (
     <MobileLayout>
       <div
+        ref={pageRef}
         style={{
           backgroundImage:
             currentAns === 4 ? `url(${BgCatImg.src})` : "transparent",
-          backgroundColor: currentAns === 4 ? "#180C00" : "transparent",
+          backgroundColor:
+            currentAns === 4 ? "#180C00" : "rgba(24, 12, 0, 0.5)",
         }}
         className="page page-answer"
       >
@@ -135,8 +151,8 @@ const AnswerPage: React.FC = () => {
         </div>
         <footer className="footer">
           <div className="ctrl-box">
-            <button onClick={() => setIsShare(true)} className="btn-result">
-              Get Your Resault
+            <button onClick={getResult} className="btn-result">
+              Get Your Result
             </button>
             <button onClick={() => setIsRefresh(true)} className="btn-refresh">
               <IconRefresh></IconRefresh>
@@ -145,6 +161,7 @@ const AnswerPage: React.FC = () => {
         </footer>
         {isShare ? (
           <div
+            id="share"
             onClick={(e) => e.currentTarget === e.target && setIsShare(false)}
             className="popup-share"
           >
@@ -183,3 +200,7 @@ const AnswerPage: React.FC = () => {
   );
 };
 export default AnswerPage;
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
