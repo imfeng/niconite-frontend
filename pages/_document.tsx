@@ -42,6 +42,18 @@ class CustomDocument extends Document {
           <link rel="manifest" href="/site.webmanifest" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
+          <meta property="og:title" content="NICONITE 心理廁驗" />
+          <meta property="og:site_name" content="NICONITE 心理廁驗" />
+          <meta
+            property="og:url"
+            content="https://niconite-frontend.vercel.app/"
+          />
+          <meta property="og:description" content="" />
+          <meta property="og:type" content="" />
+          <meta
+            property="og:image"
+            content="https://niconite-frontend.vercel.app/profile.png"
+          />
         </Head>
         <body>
           <Main />
