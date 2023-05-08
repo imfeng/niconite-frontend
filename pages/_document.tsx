@@ -41,7 +41,7 @@ class CustomDocument extends Document {
           />
           <link rel="manifest" href="/site.webmanifest" />
           <meta name="msapplication-TileColor" content="#da532c" />
-          <meta name="theme-color" content="#ffffff" />
+          <meta name="theme-color" content="#FF733A" />
           <meta property="og:title" content="NICONITE 心理廁驗" />
           <meta property="og:site_name" content="NICONITE 心理廁驗" />
           <meta
