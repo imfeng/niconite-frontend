@@ -47,6 +47,12 @@ const QuestionPage: React.FC = () => {
 
   const goQuestion = useCallback(
     async (offset: number) => {
+      try {
+        controls1.pause();
+        controls2.pause();
+      } catch (error) {
+        console.error(error);
+      }
       const newIndex = currentQuestion + offset;
       if (newIndex > 7) {
         const score = calcCorrectAns(ansList);
