@@ -178,7 +178,7 @@ const AnswerPage: React.FC = () => {
           </div>
           <div className="detail-end">
             <p>你生命中最大的敵人：</p>
-            {enemy ? <p>{enemy}</p> : <p>垃圾貓貓 (=^‥^=)</p>}
+            {enemy ? <p>{enemy}</p> : <p>垃圾貓貓 (=oωo=)</p>}
           </div>
         </div>
         <footer className="footer">

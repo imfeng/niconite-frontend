@@ -91,12 +91,6 @@ const QuestionPage: React.FC = () => {
 
   const playAudio = useCallback(
     (idx: number) => {
-      console.log({
-        state1,
-        state2,
-        Audio1,
-        Audio2,
-      });
       controls1.pause();
       controls2.pause();
       if (idx === 0) {
