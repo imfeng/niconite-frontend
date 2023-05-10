@@ -26,7 +26,7 @@ const Home: React.FC = () => {
             你以為你的生活, <br></br>真的能離開AI嗎？
           </h1>
         </div>
-        <div className="bottom">
+        <div className="bottom btn">
           <div onClick={() => router.push("/")} className="control">
             <IconArrow></IconArrow>
             <p>Now you may leave</p>
