@@ -221,11 +221,11 @@ body {
     text-align: center;
     position: relative;
     margin-bottom: 5rem;
-    min-height: 75vh;
+    // min-height: 75vh;
 
     &.content-start {
       justify-content: center;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       display: initial;
 
       @media screen and (max-height: 680px) { 
@@ -272,9 +272,10 @@ body {
   .ctrl-box {
     width: 100%;
     text-align: center;
+    margin-top: 1rem;
     // position: absolute;
-    margin: 5rem auto;
-    bottom: 10vh;
+    // margin: 5rem auto;
+    // bottom: 10vh;
     bottom: env(safe-area-inset-bottom);
   }
 
