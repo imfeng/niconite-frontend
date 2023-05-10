@@ -180,7 +180,7 @@
   .ques-photo {
     position: relative;
     margin-top: .5rem;
-
+    
     &.active {
       outline: 3px solid $lightColor;
       @include box-light-large;

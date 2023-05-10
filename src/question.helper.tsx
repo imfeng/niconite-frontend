@@ -60,7 +60,7 @@ export const questions: Array<React.FC<QuestionProps>> = [
         <br />
         <Typewriter
           style={{
-            fontSize: "1.3rem",
+            fontSize: "1.1rem",
             textAlign: "left",
             padding: "0 1rem",
           }}
