@@ -24,7 +24,7 @@ $subColor: #FF733A;
 
 @mixin btn-shadow {
   // text-shadow: rgb(37 37 37 / 50%) 3px 3px 6px;
-  filter: drop-shadow(rgba(37, 37, 37, 0.8) 3px 3px 6px);
+  filter: drop-shadow(rgba(37, 37, 37, 0.6) 3px 3px 6px);
   // box-shadow: rgb(37 37 37 / 50%) 3px 3px 6px;
 }
 

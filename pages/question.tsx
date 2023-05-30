@@ -73,12 +73,14 @@ const QuestionPage: React.FC = () => {
           score,
           result,
         });
-        await router.push({
-          pathname: "/answer",
-          query: {
-            r: result,
-          },
-        });
+        setTimeout(async () => {
+          await router.push({
+            pathname: "/answer",
+            query: {
+              r: result,
+            },
+          });
+        }, 500);
         return;
       }
       if (newIndex < 0) {

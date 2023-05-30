@@ -82,51 +82,28 @@ body {
     position: absolute;
     width: 100%;
     top: 14%;
+    transition: all 1s ease-in-out;
+    .computer, img {
+      height: auto;
+      transition: all 1s ease-in-out;
+    }
+  }
 
-    @media only screen and (min-width: 280px) {
-      top: 13%;
+  .computer-box-loaded {
+    // transform: scale(3.6);
+    &, .computer, img {
+      height: 112%;
     }
-    @media only screen and (min-width: 375px) {
-      top: 19.6%;
+    img {
+      width: auto!important;
+      max-width: initial!important;
+      // transform: scale(2.5);
     }
-    @media only screen and (min-width: 390px) {
-      top: 13.5%;
+    top: 30%!important;
+
+    .progress-box {
+      opacity: 0;
     }
-    @media only screen and (min-width: 376px) and (min-width: 413px) {
-      top: 16.5%;
-    }
-    @media only screen and (min-width: 414px) {
-      top: 14%;
-    }
-    @media only screen and (min-width: 540px) {
-      top: 22%;
-    }
-    @media only screen and (min-width: 768px) {
-      top: 14%;
-    }
-    
-    @media only screen and (min-width: 820px) {
-      top: 14%;
-    }
-    @media only screen and (min-width: 1024px) {
-      top: 22%;
-    }
-    @media only screen and (min-width: 1280px) {
-      top: 14.5%;
-    }
-    @media only screen and (min-width: 1440px) {
-      top: 16.5%;
-    }
-    @media only screen and (min-width: 1600px) {
-      top: 15%;
-    }
-    @media only screen and (min-width: 1800px) {
-      top: 15%;
-    }
-    @media only screen and (min-width: 1920px) {
-      top: 14.5%;
-    }
-    
   }
 
   .computer {

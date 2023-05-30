@@ -30,7 +30,7 @@ export const Progress: React.FC<ProgressProps> = ({ children, ...props }) => {
       const easedProgress = easeOutQuad(progress);
       const value = from + (to - from) * easedProgress;
 
-      setDisplayValue(Math.round(value));
+      setDisplayValue(Math.ceil(value));
 
       if (progress < 1) {
         requestAnimationFrame(step);
@@ -50,7 +50,6 @@ export const Progress: React.FC<ProgressProps> = ({ children, ...props }) => {
 
     setTimeout(() => {
       animateLoading(performance.now(), duration, 99, 100);
-      setDisplayValue(100);
       props.onCompleted && props.onCompleted();
     }, duration + pauseDuration);
   };

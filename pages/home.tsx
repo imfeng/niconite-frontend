@@ -15,12 +15,16 @@ const HomeMain: React.FC = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const doLoading = () => {
     setIsLoading(true);
     // await router.push("./question");
   };
-  const goQuestionPage = async () => {
-    await router.push("./question");
+  const goQuestionPage = () => {
+    setIsLoaded(true);
+    setTimeout(async () => {
+      await router.push("./question");
+    }, 1000500);
   };
 
   const { width: _width, height: _height } = useWindowSize();
@@ -62,7 +66,7 @@ const HomeMain: React.FC = () => {
           top: `${itemPos.top}px`,
         }}
         onClick={doLoading}
-        className="computer-box"
+        className={`computer-box ${isLoaded ? "computer-box-loaded" : ""}`}
       >
         <Progress onCompleted={goQuestionPage} isShow={isLoading}></Progress>
         <div
